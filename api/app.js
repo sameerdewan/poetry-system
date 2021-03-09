@@ -1,7 +1,7 @@
 const express = require('express');
-// const route = require('../routes/poetry');
+const registration = require('../routes/registration');
 const app = express();
 
-// app.use('/api/route', route);
+app.use('/api/registration', registration);
 
 module.exports = app;

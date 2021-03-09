@@ -19,6 +19,7 @@
   "homepage": "https://github.com/sameerdewan/poetry-system#readme",
   "dependencies": {
     "express": "4.17.1",
+    "mongoose": "5.11.15",
     "supertest": "6.1.3"
   }
 }

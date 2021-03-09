@@ -8,11 +8,14 @@ const userSchema = new mongoose.Schema({
     username: {
         type: mongoose.SchemaTypes.String,
         unique: true,
-        required: true
+        required: true,
+        min: [3, 'Username is too short'],
+        max: [20, 'Username is too long']
     },
     password: {
         type: mongoose.SchemaTypes.String,
-        required: true
+        required: true,
+        min: [5, 'Password is too short']
     },
     email: {
         type: mongoose.SchemaTypes.Email,

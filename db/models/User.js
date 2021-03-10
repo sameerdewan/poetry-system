@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
     validated: {
         type: mongoose.SchemaTypes.Boolean,
         default: false
+    },
+    validationCode: {
+        type: mongoose.SchemaTypes.String,
+        required: true
     }
 });
 

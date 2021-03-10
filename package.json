@@ -23,6 +23,7 @@
     "express-openapi-validator": "4.12.4",
     "mongoose": "5.11.15",
     "mongoose-type-email": "1.1.2",
+    "nanoid": "^3.1.20",
     "supertest": "6.1.3"
   }
 }

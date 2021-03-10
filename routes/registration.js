@@ -25,8 +25,17 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/validate', async (req, res) => {
-
+router.post('/validate/:username/:validationCode', async (req, res) => {
+    try {
+        const { validationCode, username } = req.params;
+        await User.findOneAndUpdate(
+            { validationCode, username },
+            { $set: { validated: true } }
+        ).exec();
+        res.status(200).send();
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 });
 
 module.exports = router;

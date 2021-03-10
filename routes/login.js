@@ -11,8 +11,19 @@ router.use(
     })
 );
 
-router.post('/', async (req, res) => {
+router.use((err, req, res, next) => {
+    res.status(err.status || 500).json({
+      message: err.message,
+      errors: err.errors,
+    });
+});
 
+router.post('/', async (req, res) => {
+    try {
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 });
 
 module.exports = router;

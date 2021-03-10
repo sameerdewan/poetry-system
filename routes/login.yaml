@@ -31,3 +31,5 @@ paths:
           description: Successful user login and JWT returned
         '400':
           description: Failed user login
+        '500':
+          description: Internal system error

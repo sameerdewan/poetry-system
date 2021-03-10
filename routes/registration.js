@@ -9,7 +9,7 @@ const apiSpec = path.join(__dirname, 'registration.yaml');
 router.use(
     OpenApiValidator.middleware({
         apiSpec,
-        validateResponses: true,
+        validateRequests: true,
     })
 );
 

@@ -7,7 +7,7 @@ services:
     depends_on:
     - mongo
     environment:
-      - MONGO_DB_URL=mongodb://localhost:27017/poetry
+      - MONGO_DB_URL=mongodb://mongo:27017/poetry
   mongo:
     image: mongo
     ports:

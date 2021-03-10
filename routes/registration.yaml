@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Registration
+  description: Route for registering for poetry
+  version: 1.0.0
+
+servers:
+  - url: localhost:8083/api/registration
+    description: Development server URL
+
+paths:
+  /:
+    post:
+      summary: Registers a user
+      parameters:
+        - in: body
+          name: user
+          description: The user to register
+          schema:
+            type: object
+            required:
+              - username
+              - password
+              - email
+            properties:
+              username:
+                type: string
+                minLength: 3
+                maxLength: 20
+              password:
+                type: string
+                minLength: 5
+                format: password
+              email:
+                type: string
+      responses:
+        '200':
+          description: Successful user registration
+        '400':
+          description: Invalid user parameters (username, password, or email)

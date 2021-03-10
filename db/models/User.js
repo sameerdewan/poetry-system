@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.Email,
         unique: true,
         required: true
+    },
+    validated: {
+        type: mongoose.SchemaTypes.Boolean,
+        default: false
     }
 });
 

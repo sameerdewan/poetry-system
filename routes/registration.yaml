@@ -38,3 +38,18 @@ paths:
           description: Successful user registration
         '400':
           description: Invalid user parameters (username, password, or email)
+
+  /api/registration/validate/{validationCode}:
+    post:
+      summary: Validates a user
+      parameters:
+        - in: path
+          name: validationCode
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful user validation
+        '400':
+          description: Unsuccessful user validation

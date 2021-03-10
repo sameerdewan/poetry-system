@@ -25,11 +25,11 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/validate/:username/:validationCode', async (req, res) => {
+router.post('/validate/:validationCode', async (req, res) => {
     try {
-        const { validationCode, username } = req.params;
+        const { validationCode } = req.params;
         await User.findOneAndUpdate(
-            { validationCode, username },
+            { validationCode },
             { $set: { validated: true } }
         ).exec();
         res.status(200).send();

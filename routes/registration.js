@@ -3,9 +3,11 @@ const OpenApiValidator = require('express-openapi-validator');
 const path = require('path');
 const User = require('../db/models/User');
 
+const apiSpec = path.join(__dirname, 'registration.yaml');
+
 router.use(
     OpenApiValidator.middleware({
-        apiSpec: './registration.yaml',
+        apiSpec,
         validateResponses: true,
     })
 );

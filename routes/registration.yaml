@@ -5,34 +5,34 @@ info:
   version: 1.0.0
 
 servers:
-  - url: localhost:8083/api/registration
+  - url: http://localhost:8080
     description: Development server URL
 
 paths:
-  /:
+  /api/registration:
     post:
       summary: Registers a user
-      parameters:
-        - in: body
-          name: user
-          description: The user to register
-          schema:
-            type: object
-            required:
-              - username
-              - password
-              - email
-            properties:
-              username:
-                type: string
-                minLength: 3
-                maxLength: 20
-              password:
-                type: string
-                minLength: 5
-                format: password
-              email:
-                type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - email
+              properties:
+                username:
+                  type: string
+                  minLength: 3
+                  maxLength: 20
+                password:
+                  type: string
+                  minLength: 5
+                  format: password
+                email:
+                  type: string
       responses:
         '200':
           description: Successful user registration

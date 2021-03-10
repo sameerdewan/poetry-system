@@ -2,8 +2,10 @@ const router = require('express').Router();
 const OpenApiValidator = require('express-openapi-validator');
 const path = require('path');
 const User = require('../db/models/User');
+const PoetrySystemJWT = require('../jwt');
 
 const apiSpec = path.join(__dirname, 'login.yaml');
+const poetryJWT = new PoetrySystemJWT();
 
 router.use(
     OpenApiValidator.middleware({
@@ -33,7 +35,8 @@ router.post('/', async (req, res) => {
             if (isMatch !== true) {
                 res.status(400).json({ error: 'Incorrect password' });
             }
-            res.status(200).send();
+            const token = poetryJWT.signPayloadGetToken({ username });
+            res.status(200).send({ token });
         });
     } catch (error) {
         res.status(400).json({ error: error.message });

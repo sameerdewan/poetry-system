@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
                 throw err;
             }
             if (isMatch !== true) {
-                throw new Error('Incorrect password');
+                res.status(400).json({ error: 'Incorrect password' });
             }
             res.status(200).send();
         });

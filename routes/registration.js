@@ -2,7 +2,10 @@ const router = require('express').Router();
 const OpenApiValidator = require('express-openapi-validator');
 const path = require('path');
 const { nanoid } = require('nanoid');
+const sendgrid = require('@sendgrid/mail');
 const User = require('../db/models/User');
+
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 const apiSpec = path.join(__dirname, 'registration.yaml');
 
@@ -26,6 +29,14 @@ router.post('/', async (req, res) => {
         const validationCode = nanoid();
         const user = new User({ username, password, email, validationCode });
         await user.save();
+        // const message = {
+        //     to: email,
+        //     from: 'poetrysystems.com',
+        //     subject: 'Poetry Verificaiton Code',
+        //     text: 'yeay',
+        //     html: `<h1>${validationCode}</h1>`
+        // };
+        // await sendgrid.send(message);
         res.status(200).send();
     } catch (error) {
         res.status(400).json({ error: error.message });

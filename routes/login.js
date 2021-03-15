@@ -28,6 +28,9 @@ router.post('/', async (req, res) => {
         if (!user) {
             throw new Error('Username not found');
         }
+        if (user.validated === false) {
+            throw new Error('User is not yet validated');
+        }
         user.comparePassword(password, (err, isMatch) => {
             if (err) {
                 throw err;

@@ -46,6 +46,10 @@ router.post('/', async (req, res) => {
 router.post('/validate/:validationCode', async (req, res) => {
     try {
         const { validationCode } = req.params;
+        const user = await User.findOne({ validationCode }).exec();
+        if (!user) {
+            throw new Error('Validation code not found');
+        }
         await User.findOneAndUpdate(
             { validationCode },
             { $set: { validated: true } }
